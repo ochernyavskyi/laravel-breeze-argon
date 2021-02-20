@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\OauthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
@@ -51,43 +52,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
 
-Route::get('/github/redirect', function () {
-    return Socialite::driver('github')->redirect();
-})->name('github.redirect');
+Route::get('/github/redirect', [OauthController::class, 'githubRedirect'])->name('github.redirect');
 
-Route::get('/github/callback', function () {
-    $userGithub = Socialite::driver('github')->user();
-    $user = \App\Models\User::firstOrCreate(
-        [
-            'email' => $userGithub->getEmail()
-        ],
-        [
-            'name' => $userGithub->getName(),
-            'email' => $userGithub->getEmail(),
-            'password' => \Illuminate\Support\Facades\Hash::make(\Illuminate\Support\Str::random(25))
-        ]);
-    Auth::login($user);
-    return redirect()->route('home');
-});
+Route::get('/github/callback', [OauthController::class, 'githubCallback']);
 
 
-Route::get('/google/redirect', function () {
-    return Socialite::driver('google')->redirect();
-})->name('google.redirect');
+Route::get('/google/redirect', [OauthController::class, 'googleRedirect'])->name('google.redirect');
 
-Route::get('/google/callback', function () {
-    $userGoogle = Socialite::driver('google')->user();
-    $user = \App\Models\User::firstOrCreate(
-        [
-            'email' => $userGoogle->getEmail()
-        ],
-        [
-            'name' => $userGoogle->getName(),
-            'email' => $userGoogle->getEmail(),
-            'password' => \Illuminate\Support\Facades\Hash::make(\Illuminate\Support\Str::random(25))
-        ]);
-    Auth::login($user);
-    return redirect()->route('home');
-});
+Route::get('/google/callback', [OauthController::class, 'googleCallback']);
 
-
+require __DIR__ . '/api.php';
