@@ -31,16 +31,7 @@ class UserController extends Controller
 
     protected function update(Request $request, User $user)
     {
-        $user = User::find($user);
-        $user->save($request->all());
+        $user->update($request->all());
     }
 
-//    protected function update(Request $request)
-//    {
-//        $user = User::find($request['id']);
-//        $user['email'] = $request['email'];
-//        $user['name'] = $request['name'];
-//        $user['password'] = Hash::make($request['password']);
-//        $user->save();
-//    }
 }
