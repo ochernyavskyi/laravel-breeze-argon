@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['middleware' => 'auth:api'], function () {
     Route::middleware('auth:api')->get('/userlist', [\App\Http\Controllers\Api\UserController::class, 'index']);
-    Route::middleware('auth:api')->get('/create', [\App\Http\Controllers\Api\UserController::class, 'create']);
+    Route::middleware('auth:api')->post('/create', [\App\Http\Controllers\Api\UserController::class, 'create']);
     Route::middleware('auth:api')->get('/user/delete/{user}', [\App\Http\Controllers\Api\UserController::class, 'delete']);
-    Route::middleware('auth:api')->get('/update/{user}', [\App\Http\Controllers\Api\UserController::class, 'update']);
+    Route::middleware('auth:api')->post('/update/{user}', [\App\Http\Controllers\Api\UserController::class, 'update']);
 });
