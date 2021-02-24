@@ -42,4 +42,7 @@ return [
         'redirect' => 'http://localhost/google/callback',
     ],
 
+    'telegram-bot-api' => [
+        'token' => env('TELEGRAM_BOT_TOKEN')
+    ],
 ];

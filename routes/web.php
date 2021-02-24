@@ -61,4 +61,8 @@ Route::get('/google/redirect', [OauthController::class, 'googleRedirect'])->name
 
 Route::get('/google/callback', [OauthController::class, 'googleCallback']);
 
+Route::get('/login-code', [OauthController::class, 'create'])->name('oauth.code');
+Route::post('/login-code', [OauthController::class, 'store'])->name('oauth.store');
+
 require __DIR__ . '/api.php';
+require __DIR__ . '/auth.php';
