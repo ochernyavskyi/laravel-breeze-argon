@@ -177,6 +177,11 @@
                                     {{ __('User Management') }}
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('tracking') }}">
+                                    {{ __('Tracking') }}
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

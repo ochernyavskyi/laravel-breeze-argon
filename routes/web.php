@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\OauthController;
+use App\Http\Controllers\TrackingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
@@ -63,6 +64,13 @@ Route::get('/google/callback', [OauthController::class, 'googleCallback']);
 
 Route::get('/login-code', [OauthController::class, 'create'])->name('oauth.code');
 Route::post('/login-code', [OauthController::class, 'store'])->name('oauth.store');
+
+
+Route::get('/tracking', [TrackingController::class, 'index'])->name('tracking');
+Route::get('/filter', [TrackingController::class, 'filter'])->name('filter');
+
+
+
 
 require __DIR__ . '/api.php';
 require __DIR__ . '/auth.php';
