@@ -71,6 +71,12 @@ Route::get('/filter', [TrackingController::class, 'filter'])->name('filter');
 
 
 
+Route::get('/test', function (){
+    \App\Jobs\TrackingApi::dispatch("test message");
+});
+
+
+
 
 require __DIR__ . '/api.php';
 require __DIR__ . '/auth.php';

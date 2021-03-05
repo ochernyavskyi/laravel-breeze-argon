@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\TrackingApi;
 use App\Model\User;
 use App\Models\Tracking;
 use Illuminate\Http\Request;
@@ -14,13 +15,8 @@ class TrackingController extends Controller
 {
     protected function index(Request $request)
     {
+        TrackingApi::dispatch($request->all(), $_SERVER);
 
-        Tracking::updateOrCreate(
-            ['user_id' => Auth::id(),
-                'user_agent' => $request->server('HTTP_USER_AGENT'),
-                'ip' => $_SERVER["REMOTE_ADDR"],
-                'product' => $request['product'],
-                'country' => $request['country']])->increment('counter');
     }
 
 }
