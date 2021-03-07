@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\OauthController;
+use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\TrackingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -71,9 +72,8 @@ Route::get('/filter', [TrackingController::class, 'filter'])->name('filter');
 
 
 
-Route::get('/test', function (){
-    \App\Jobs\TrackingApi::dispatch("test message");
-});
+Route::get('/test', [CurrencyController::class, 'update']);
+
 
 
 
