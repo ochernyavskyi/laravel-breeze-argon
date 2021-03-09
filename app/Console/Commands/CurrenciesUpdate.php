@@ -40,6 +40,7 @@ class CurrenciesUpdate extends Command
     public function handle()
     {
         $collection = http::get('https://openexchangerates.org/api/latest.json?app_id=1ad10453b3734f0e8f7bba39a658a500');
-        Currency::where('name', 'USD')->update(['rate' => $collection['rates']['USD']]);
+        Currency::where('code', 'USD')->update(['rate' => $collection['rates']['USD']]);
+
     }
 }

@@ -40,11 +40,11 @@ class CurrenciesList extends Command
      */
     public function handle()
     {
-        $collection = http::get('https://openexchangerates.org/api/latest.json?app_id=1ad10453b3734f0e8f7bba39a658a500');
-        foreach ($collection['rates'] as $elem => $value){
+        $collection = http::get('https://openexchangerates.org/api/currencies.json?app_id=1ad10453b3734f0e8f7bba39a658a500');
+        foreach ($collection->json() as $key=> $value){
             Currency::firstOrCreate(
-                ['name' => $elem],
-                ['rate' => $value]
+                ['code' => $key],
+                ['name' => $value]
             );
         }
     }

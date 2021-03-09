@@ -72,10 +72,6 @@ Route::get('/filter', [TrackingController::class, 'filter'])->name('filter');
 
 
 
-Route::get('/test', [CurrencyController::class, 'update']);
-
-
-
 
 
 require __DIR__ . '/api.php';
